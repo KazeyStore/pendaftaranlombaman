@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pendaftaran Lomba | MAN 1 Pohuwato</title>
+<style>
+:root{--green:#07583d;--deep:#064b35;--gold:#d7bd62;--cream:#fff8e6;--ink:#203b31;--muted:#6c756f}
+*{box-sizing:border-box}body{margin:0;background:var(--green);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+.hero{color:white;text-align:center;padding:42px 16px 34px}
+.logo{width:112px;height:112px;border-radius:50%;background:#fff;color:var(--green);margin:0 auto 18px;display:grid;place-items:center;border:6px double var(--gold);box-shadow:0 0 0 5px rgba(255,255,255,.13)}
+.logo span{font-size:42px}.logo img{width:100%;height:100%;object-fit:contain;border-radius:50%;display:none}.logo.has-image img{display:block}.logo.has-image .logo-fallback{display:none}.logo small{display:block;font-size:9px;letter-spacing:2px;font-weight:bold;margin-top:-8px}
+.hero h1{font-size:clamp(25px,5vw,36px);margin:0 0 10px}.hero p{color:#e8dca8;margin:0;font-size:16px;letter-spacing:.5px}
+.wrap{max-width:850px;margin:0 auto 40px;background:#fff;border-top:6px solid var(--gold);padding:34px clamp(18px,5vw,42px) 42px;box-shadow:0 10px 30px #003c2a30}
+h2{text-align:center;color:var(--green);font-size:27px;margin:18px 0 12px}
+.intro{text-align:center;color:#707070;line-height:1.6;margin:0 auto 30px;max-width:600px}
+.period{border:2px solid var(--gold);border-radius:17px;background:var(--cream);padding:22px;margin:0 0 34px;text-align:center}
+.period h3{color:var(--green);font-size:23px;margin:0 0 18px}
+.dates{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.datebox{background:white;border-radius:12px;padding:16px 8px}.datebox small{display:block;color:#777;font-weight:bold;font-size:12px}.datebox strong{display:block;color:var(--green);font-size:29px;margin-top:6px}
+.period p{color:#888;margin:15px 0 0}
+.section-title{font-size:20px;color:var(--green);border-bottom:3px solid #e4d8a6;padding-bottom:12px;margin:28px 0 22px}
+.field{margin:0 0 19px}.field label{display:block;font-weight:700;margin-bottom:9px}.req{color:#b23b32}
+input,select,textarea{width:100%;padding:15px 16px;border:1px solid #cbd2ce;border-radius:12px;font:inherit;font-size:16px;color:#263a32;background:#fff;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px #07583d18}
+textarea{min-height:90px;resize:vertical}.hint{font-size:13px;color:#7b827e;margin-top:7px;line-height:1.45}
+.hidden{display:none!important}.subbox{background:#f8faf8;border:1px solid #e1e8e3;border-radius:14px;padding:18px;margin:18px 0}
+.subbox h3{color:var(--green);margin:0 0 16px;font-size:17px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+button{border:0;border-radius:12px;padding:16px 22px;font-size:16px;font-weight:bold;cursor:pointer}
+.primary{width:100%;background:var(--green);color:white;margin-top:8px}.primary:hover{background:var(--deep)}
+.secondary{background:#f1f4f1;color:var(--green);border:1px solid #d8e0da}
+.notice{padding:13px 15px;border-radius:10px;background:#eff7f1;color:#22533d;font-size:14px;line-height:1.5;margin:18px 0}
+.success{display:none;background:#edf8ef;border:1px solid #9bc9a4;color:#205b30;padding:18px;border-radius:12px;margin-top:18px}
+.admin{margin-top:28px;text-align:center}.admin summary{display:inline-flex;align-items:center;justify-content:center;min-width:150px;padding:14px 30px;border-radius:12px;background:var(--green);color:#fff;font-weight:bold;letter-spacing:.7px;cursor:pointer;list-style:none;box-shadow:0 4px 10px #003c2a22;transition:background .2s,transform .2s}.admin summary:hover{background:var(--deep);transform:translateY(-1px)}.admin summary::-webkit-details-marker{display:none}.login-box{max-width:440px;background:#f8faf8;border:1px solid #e1e8e3;border-radius:14px;padding:18px;margin:16px 0}.login-box h3{color:var(--green);margin:0 0 14px}.login-error{display:none;color:#a32626;background:#fff0f0;padding:10px;border-radius:8px;margin:10px 0;font-size:14px}.admin-content{margin-top:16px}.logout{margin-left:auto}
+.admin-tools{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.admin-tools button{padding:11px 14px;font-size:14px}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px;min-width:600px}th,td{padding:10px;border-bottom:1px solid #e4e8e5;text-align:left}th{background:#f2f6f3;color:var(--green)}
+footer{text-align:center;color:#e9e2c9;padding:0 16px 28px;font-size:13px}
+@media(max-width:560px){.hero{padding-top:30px}.wrap{padding-top:24px}.grid2{grid-template-columns:1fr}.dates{gap:8px}.datebox strong{font-size:25px}h2{font-size:23px}}
+
+/* Detail pendaftaran dan animasi konfirmasi */
+.action-cell{white-space:nowrap;display:flex;align-items:center;gap:8px}
+.check-btn{padding:8px 12px;background:#07583d;color:#fff;font-size:12px;border-radius:9px}
+.delete-btn{width:36px;height:36px;padding:0;display:inline-grid;place-items:center;background:#fff0f0;color:#b42318;border:1px solid #f2c5c2;font-size:19px;border-radius:9px}
+.check-btn:hover{background:#064b35}.delete-btn:hover{background:#ffe1df}
+.overlay{position:fixed;inset:0;background:rgba(0,25,17,.66);display:none;align-items:center;justify-content:center;padding:18px;z-index:9999;backdrop-filter:blur(4px)}
+.overlay.show{display:flex;animation:fadeIn .22s ease}
+.dialog{width:min(620px,100%);max-height:85vh;overflow:auto;background:#fff;border-radius:20px;padding:24px;box-shadow:0 20px 70px #001b12aa;animation:popIn .32s cubic-bezier(.2,.8,.2,1)}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:2px solid #e8efea;padding-bottom:14px;margin-bottom:16px}
+.dialog-head h3{margin:0;color:var(--green);font-size:21px}
+.close-dialog{background:#f1f4f1;color:#345;padding:8px 12px;font-size:20px;line-height:1}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.detail-item{background:#f6f9f6;border:1px solid #e6ede7;border-radius:11px;padding:12px;min-width:0}
+.detail-item small{display:block;color:#738078;font-size:11px;font-weight:bold;text-transform:uppercase;margin-bottom:5px}
+.detail-item strong{display:block;color:#203b31;font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere;font-weight:600}
+.send-dialog{text-align:center;padding:34px 24px}
+.checkmark{width:92px;height:92px;border-radius:50%;margin:0 auto 20px;background:#e8f7ec;display:grid;place-items:center;color:#188544;font-size:54px;font-weight:bold;animation:checkPop .5s ease both}
+.checkmark svg{width:54px;height:54px;stroke:currentColor;stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.send-dialog h3{color:#07583d;font-size:23px;margin:0 0 9px;letter-spacing:.4px}
+.send-dialog p{color:#68766e;margin:0 0 22px}
+.send-dialog button{background:#07583d;color:#fff;padding:12px 28px}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes checkPop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.13)}100%{transform:scale(1);opacity:1}}
+@media(max-width:560px){.detail-grid{grid-template-columns:1fr}.dialog{padding:18px}.send-dialog{padding:28px 16px}}
+
+
+/* Tampilan sedikit lebih kecil agar halaman terasa lebih jauh dan tidak terlalu memenuhi layar */
+body{zoom:.92}
+@media(max-width:560px){
+  body{zoom:.94}
+  .hero{padding-top:26px;padding-bottom:26px}
+  .logo{width:96px;height:96px;margin-bottom:14px}
+  .logo span{font-size:36px}
+  .wrap{padding:20px 16px 32px}
+  h2{font-size:21px}
+  .intro{font-size:14px;margin-bottom:24px}
+  .period{padding:17px;margin-bottom:26px}
+  .period h3{font-size:20px}
+  .datebox{padding:13px 7px}
+  .datebox strong{font-size:23px}
+  .section-title{font-size:18px;margin:24px 0 18px}
+  input,select,textarea{padding:12px 13px;font-size:15px}
+  button{padding:14px 18px;font-size:15px}
+}
+
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="logo" id="siteLogo"><div class="logo-fallback"><span>📖</span><small>OSIS</small></div><img id="siteLogoImage" alt="Logo kegiatan"></div>
+  <h1>MAN 1 POHUWATO</h1>
+  <p>OSIS • PENDAFTARAN LOMBA</p>
+</header>
+<main class="wrap">
+  <h2>FORMULIR PENDAFTARAN LOMBA</h2>
+  <p class="intro">Silakan isi formulir dengan data yang benar dan lengkap untuk mengikuti perlombaan.</p>
+  <section class="period">
+    <h3>PENDAFTARAN DIBUKA!</h3>
+    <div class="dates">
+      <div class="datebox"><small>MULAI PENDAFTARAN</small><strong>9 NOV</strong></div>
+      <div class="datebox"><small>BATAS PENDAFTARAN</small><strong>18 NOV</strong></div>
+    </div>
+    <p>Periode pendaftaran 9–18 November 2026</p>
+  </section>
+
+  <form id="regForm">
+    <h3 class="section-title">01 — IDENTITAS PESERTA</h3>
+    <div class="field"><label for="role">Daftar sebagai <span class="req">*</span></label>
+      <select id="role" required><option value="">Pilih peran</option><option>Siswa</option><option>Guru</option><option>Tata Usaha</option></select></div>
+    <div class="field"><label for="name">Nama lengkap <span class="req">*</span></label><input id="name" required placeholder="Masukkan nama lengkap"></div>
+    <div class="field"><label for="class">Kelas / Jabatan <span class="req">*</span></label><input id="class" required placeholder="Contoh: X-A atau Guru Matematika"></div>
+    <div class="field"><label for="phone">Nomor HP</label><input id="phone" type="tel" placeholder="Nomor HP (opsional)"></div>
+
+    <h3 class="section-title">02 — PILIH PERLOMBAAN</h3>
+    <div class="field"><label for="category">Kategori lomba <span class="req">*</span></label>
+      <select id="category" required><option value="">Pilih kategori</option><option value="Olahraga">Olahraga</option><option value="Kesenian">Kesenian</option></select></div>
+    <div class="field hidden" id="sportWrap"><label for="sport">Cabang olahraga <span class="req">*</span></label>
+      <select id="sport"><option value="">Pilih cabang olahraga</option><option>Voli</option><option>Catur</option><option>Tenis Meja</option><option>Bola Takraw</option></select></div>
+    <div class="field hidden" id="artWrap"><label for="art">Cabang kesenian <span class="req">*</span></label>
+      <select id="art"><option value="">Pilih cabang kesenian</option><option>Sambung Lirik</option><option>Senandungan Jawaban</option><option>Vokalia</option></select></div>
+
+    <div id="teamSport" class="subbox hidden">
+      <h3>DATA TIM OLAHRAGA</h3>
+      <div class="field"><label for="sportTeam">Nama tim <span class="req">*</span></label><input id="sportTeam" placeholder="Masukkan nama tim"></div>
+      <div class="grid2">
+        <div class="field"><label for="sportCaptain">Nama ketua tim <span class="req">*</span></label><input id="sportCaptain" placeholder="Nama ketua"></div>
+        <div class="field"><label for="sportReserve">Nama pemain cadangan</label><input id="sportReserve" placeholder="Nama pemain cadangan"></div>
+      </div>
+      <div class="field"><label for="sportCount">Jumlah pemain <span class="req">*</span></label><input id="sportCount" type="number" min="1" max="30" placeholder="Masukkan jumlah pemain"></div>
+      <div class="field"><label for="sportMembers">Nama anggota / pemain <span class="req">*</span></label><textarea id="sportMembers" placeholder="Tuliskan nama anggota, satu nama per baris"></textarea><div class="hint">Tuliskan nama seluruh anggota tim. Ketua dan pemain cadangan boleh dicantumkan agar data tim lengkap.</div></div>
+    </div>
+
+    <div id="individual" class="subbox hidden">
+      <h3>DATA PESERTA</h3>
+      <div class="notice">Cabang ini didaftarkan secara perorangan. Identitas peserta diambil dari bagian identitas di atas.</div>
+    </div>
+
+    <div id="artTeam" class="subbox hidden">
+      <h3>DATA TIM KESENIAN</h3>
+      <div class="field"><label for="artTeamName">Nama tim <span class="req">*</span></label><input id="artTeamName" placeholder="Masukkan nama tim"></div>
+      <div class="field"><label for="artCaptain">Nama ketua tim <span class="req">*</span></label><input id="artCaptain" placeholder="Nama ketua tim"></div>
+      <div class="field"><label for="artMembers">Nama anggota (maksimal 4 orang) <span class="req">*</span></label><textarea id="artMembers" placeholder="1. Nama anggota&#10;2. Nama anggota&#10;3. Nama anggota&#10;4. Nama anggota"></textarea><div class="hint">Total tim 5 orang: 1 ketua dan maksimal 4 anggota.</div></div>
+    </div>
+
+    <div id="vocalia" class="subbox hidden">
+      <h3>DATA VOKALIA</h3>
+      <div class="field"><label for="vocalType">Jenis penampilan <span class="req">*</span></label><select id="vocalType"><option value="">Pilih jenis penampilan</option><option>Solo</option><option>Duet</option></select></div>
+      <div class="field hidden" id="duetWrap"><label for="duetName">Nama pemain kedua <span class="req">*</span></label><input id="duetName" placeholder="Masukkan nama pasangan duet"></div>
+      <div class="notice">Solo hanya menggunakan nama peserta pada identitas. Jika memilih Duet, isi nama pasangan duet.</div>
+    </div>
+
+    <div class="notice">Periksa kembali data sebelum menekan tombol kirim. Data pada versi demo ini disimpan di browser perangkat yang digunakan.</div>
+    <button class="primary" type="submit">KIRIM PENDAFTARAN</button>
+    <div class="success" id="success"></div>
+  </form>
+
+  <details class="admin">
+     <summary>PANITIA</summary>
+     <div class="login-box" id="adminLogin">
+       <h3>Login Panitia</h3>
+       <div class="field"><label for="adminUser">Username</label><input id="adminUser" autocomplete="username" placeholder="Masukkan username"></div>
+       <div class="field"><label for="adminPass">Password</label><input id="adminPass" type="password" autocomplete="current-password" placeholder="Masukkan password"></div>
+       <div class="login-error" id="loginError">Username atau password salah. Silakan coba lagi.</div>
+       <button class="primary" type="button" id="loginBtn">MASUK</button>
+     </div>
+     <div id="adminContent" class="admin-content hidden">
+       <div class="admin-tools"><button class="secondary logout" type="button" id="logoutBtn">Keluar</button></div>
+       <p class="hint">Panel ini menampilkan pendaftaran yang tersimpan di browser/perangkat ini. Tidak memakai Google Sheets. Data dari HP atau browser lain tidak otomatis masuk ke sini.</p>
+       <div class="notice"><strong id="totalRegs">0 pendaftar</strong> tersimpan di perangkat ini.</div>
+       <div class="field"><label for="searchRegs">Cari nama / kelas / lomba</label><input id="searchRegs" type="search" placeholder="Ketik nama, kelas, atau cabang lomba..."></div>
+       <div class="admin-tools"><button class="secondary" type="button" id="exportBtn">Unduh CSV</button><button class="secondary" type="button" id="clearBtn">Hapus semua data lokal</button></div>
+       <div class="table-wrap"><table><thead><tr><th>No.</th><th>Nama</th><th>Kelas / Jabatan</th><th>Peran</th><th>Lomba</th><th>Tim / Jenis</th><th>Waktu daftar</th><th>Aksi</th></tr></thead><tbody id="rows"><tr><td colspan="8">Belum ada pendaftar di perangkat ini.</td></tr></tbody></table></div>
+       <p class="hint">Untuk melihat detail nomor HP, ketua tim, dan anggota, unduh file CSV lalu buka di aplikasi spreadsheet pada perangkatmu.</p>
+     </div>
+  </details>
+</main>
+
+<div class="overlay" id="detailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+  <div class="dialog">
+    <div class="dialog-head"><h3 id="detailTitle">DETAIL PENDAFTARAN</h3><button class="close-dialog" type="button" data-close="detailOverlay" aria-label="Tutup">×</button></div>
+    <div class="detail-grid" id="detailGrid"></div>
+  </div>
+</div>
+<div class="overlay" id="sendOverlay" role="dialog" aria-modal="true" aria-labelledby="sendTitle">
+  <div class="dialog send-dialog">
+    <div class="checkmark" aria-hidden="true"><svg viewBox="0 0 52 52"><path d="M8 27 L20 39 L44 12"/></svg></div>
+    <h3 id="sendTitle">PESAN TELAH TERKIRIM</h3>
+    <p id="sendMessage">Pendaftaran berhasil disimpan. Terima kasih!</p>
+    <button type="button" id="sendOk">OK</button>
+  </div>
+</div>
+
+<footer>OSIS MAN 1 POHUWATO • Formulir Pendaftaran Lomba 2026</footer>
+<script>
+const $=id=>document.getElementById(id);
+const show=(id,on)=>$(id).classList.toggle('hidden',!on);
+// GANTI LINK LOGO DI BAWAH INI. Gunakan URL langsung file gambar (PNG/JPG/WEBP).
+const LOGO_URL='https://cdn.phototourl.com/member/2026-11-09-dfe88f8e-ef75-47b8-8c74-1808020c3e51.png';
+if(LOGO_URL.trim()){const logoImage=$('siteLogoImage');logoImage.src=LOGO_URL.trim();logoImage.onload=()=> $('siteLogo').classList.add('has-image');logoImage.onerror=()=>console.warn('Link logo tidak dapat dibuka. Periksa URL gambar.');}
+// GANTI username dan password ini sebelum membagikan file.
+const PANITIA_USERNAME='MANSAPO';
+const PANITIA_PASSWORD='MANSAPO2026';
+function loginPanitia(){
+  const user=$('adminUser').value.trim(), pass=$('adminPass').value;
+  if(user===PANITIA_USERNAME && pass===PANITIA_PASSWORD){
+    show('adminLogin',false);show('adminContent',true);$('loginError').style.display='none';render();
+  }else{$('loginError').style.display='block';$('adminPass').value='';}
+}
+$('loginBtn').addEventListener('click',loginPanitia);
+$('adminPass').addEventListener('keydown',e=>{if(e.key==='Enter')loginPanitia()});
+$('adminUser').addEventListener('keydown',e=>{if(e.key==='Enter')$('adminPass').focus()});
+$('logoutBtn').addEventListener('click',()=>{show('adminContent',false);show('adminLogin',true);$('adminUser').value='';$('adminPass').value='';});
+const required=(id,on)=>$(id).required=on;
+const sportTeamSports=['Voli','Bola Takraw'];
+function updateForm(){
+  const cat=$('category').value, sport=$('sport').value, art=$('art').value;
+  show('sportWrap',cat==='Olahraga'); show('artWrap',cat==='Kesenian');
+  show('teamSport',cat==='Olahraga'&&sportTeamSports.includes(sport));
+  show('individual',cat==='Olahraga'&&['Catur','Tenis Meja'].includes(sport));
+  show('artTeam',cat==='Kesenian'&&['Sambung Lirik','Senandungan Jawaban'].includes(art));
+  show('vocalia',cat==='Kesenian'&&art==='Vokalia');
+  const team=cat==='Olahraga'&&sportTeamSports.includes(sport);
+  ['sportTeam','sportCaptain','sportCount','sportMembers'].forEach(id=>required(id,team));
+  required('artTeamName',cat==='Kesenian'&&['Sambung Lirik','Senandungan Jawaban'].includes(art));
+  required('artCaptain',cat==='Kesenian'&&['Sambung Lirik','Senandungan Jawaban'].includes(art));
+  required('artMembers',cat==='Kesenian'&&['Sambung Lirik','Senandungan Jawaban'].includes(art));
+  required('sport',$('category').value==='Olahraga'); required('art',$('category').value==='Kesenian');
+  updateVocal();
+}
+function updateVocal(){const duet=$('vocalType').value==='Duet';show('duetWrap',duet);required('duetName',duet);}
+$('category').addEventListener('change',updateForm);$('sport').addEventListener('change',updateForm);$('art').addEventListener('change',updateForm);$('vocalType').addEventListener('change',updateVocal);
+function read(id){return $(id).value.trim()}
+function registrations(){try{return JSON.parse(localStorage.getItem('man1pohuwato_regs')||'[]')}catch(e){return []}}
+function render(){
+  const data=registrations(), body=$('rows');
+  const total=$('totalRegs');
+  if(total) total.textContent=data.length+' pendaftar';
+  const q=($('searchRegs')?.value||'').trim().toLowerCase();
+  const filtered=data.map((d,i)=>({...d,_idx:i,_no:i+1})).filter(d=>
+    [d.name,d.class,d.role,d.competition,d.team,d.kind].some(v=>String(v||'').toLowerCase().includes(q))
+  );
+  body.innerHTML='';
+  if(!filtered.length){
+    body.innerHTML='<tr><td colspan="8">'+(data.length?'Tidak ada pendaftar yang cocok.':'Belum ada pendaftar di perangkat ini.')+'</td></tr>';
+    return;
+  }
+  filtered.slice().reverse().forEach(d=>{
+    const tr=document.createElement('tr');
+    [d._no,d.name,d.class,d.role,d.competition,d.team||d.kind||'-',d.time].forEach(x=>{
+      const td=document.createElement('td');td.textContent=x??'-';tr.appendChild(td);
+    });
+    const action=document.createElement('td');
+    action.className='action-cell';
+    const cek=document.createElement('button');
+    cek.type='button';cek.className='check-btn';cek.textContent='CEK';
+    cek.dataset.action='cek';cek.dataset.index=String(d._idx);
+    const hapus=document.createElement('button');
+    hapus.type='button';hapus.className='delete-btn';hapus.textContent='🗑';
+    hapus.title='Hapus pendaftaran';hapus.setAttribute('aria-label','Hapus pendaftaran');
+    hapus.dataset.action='hapus';hapus.dataset.index=String(d._idx);
+    action.append(cek, hapus);tr.appendChild(action);body.appendChild(tr);
+  });
+}
+
+const detailLabels={
+  name:'Nama lengkap',role:'Daftar sebagai',class:'Kelas / Jabatan',phone:'Nomor HP',
+  category:'Kategori lomba',competition:'Cabang lomba',team:'Nama tim',captain:'Ketua tim',
+  reserve:'Pemain cadangan',count:'Jumlah pemain',members:'Nama anggota / pemain',
+  kind:'Jenis penampilan',partner:'Pasangan duet',time:'Waktu pendaftaran'
+};
+function closeOverlay(id){$(id).classList.remove('show')}
+document.querySelectorAll('[data-close]').forEach(btn=>btn.addEventListener('click',()=>closeOverlay(btn.dataset.close)));
+['detailOverlay','sendOverlay'].forEach(id=>$(id).addEventListener('click',e=>{if(e.target===$(id))closeOverlay(id)}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeOverlay('detailOverlay');closeOverlay('sendOverlay')}});
+$('rows').addEventListener('click',e=>{
+  const btn=e.target.closest('button[data-action]');if(!btn)return;
+  const index=Number(btn.dataset.index), data=registrations(), record=data[index];
+  if(!record)return;
+  if(btn.dataset.action==='cek'){
+    const grid=$('detailGrid');grid.innerHTML='';
+    Object.entries(detailLabels).forEach(([key,label])=>{
+      const value=record[key];
+      if(value===undefined||value===null||String(value).trim()==='')return;
+      const item=document.createElement('div');item.className='detail-item';
+      const small=document.createElement('small');small.textContent=label;
+      const strong=document.createElement('strong');strong.textContent=String(value);
+      item.append(small,strong);grid.appendChild(item);
+    });
+    $('detailOverlay').classList.add('show');
+  }else if(btn.dataset.action==='hapus'){
+    if(confirm('Hapus data pendaftaran '+(record.name||'ini')+'?')){
+      data.splice(index,1);localStorage.setItem('man1pohuwato_regs',JSON.stringify(data));render();
+    }
+  }
+});
+$('sendOk').addEventListener('click',()=>closeOverlay('sendOverlay'));
+
+$('regForm').addEventListener('submit',e=>{
+ e.preventDefault(); if(!$('regForm').reportValidity())return;
+ if(read('artMembers').split('\n').filter(x=>x.trim()).length>4 && !$('artTeam').classList.contains('hidden')){alert('Maksimal 4 nama anggota selain ketua tim.');return}
+ const cat=read('category'), sport=read('sport'), art=read('art'), isTeam=sportTeamSports.includes(sport);
+ const d={name:read('name'),role:read('role'),class:read('class'),phone:read('phone'),category:cat,competition:sport||art,time:new Date().toLocaleString('id-ID')};
+ if(isTeam){d.team=read('sportTeam');d.captain=read('sportCaptain');d.reserve=read('sportReserve');d.count=read('sportCount');d.members=read('sportMembers')}
+ if(cat==='Kesenian'&&art!=='Vokalia'){d.team=read('artTeamName');d.captain=read('artCaptain');d.members=read('artMembers')}
+ if(art==='Vokalia'){d.kind=read('vocalType');d.partner=read('duetName')}
+ const data=registrations();data.push(d);localStorage.setItem('man1pohuwato_regs',JSON.stringify(data));render();
+ $('success').style.display='none';
+ $('sendMessage').textContent='Pendaftaran '+d.name+' berhasil disimpan di perangkat ini. Terima kasih!';
+ $('sendOverlay').classList.add('show');
+ $('regForm').reset();updateForm();
+});
+$('exportBtn').addEventListener('click',()=>{
+ const data=registrations();if(!data.length){alert('Belum ada data pendaftar.');return}
+ const cols=['name','role','class','phone','category','competition','team','captain','reserve','count','members','kind','partner','time'];
+ const esc=x=>'"'+String(x??'').replace(/"/g,'""')+'"';
+ const csv=[cols.join(','),...data.map(d=>cols.map(c=>esc(d[c])).join(','))].join('\r\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}));a.download='data-pendaftaran-man1-pohuwato.csv';a.click();URL.revokeObjectURL(a.href);
+});
+$('clearBtn').addEventListener('click',()=>{if(confirm('Hapus semua data pendaftaran yang tersimpan di browser ini?')){localStorage.removeItem('man1pohuwato_regs');render()}});
+render();updateForm();
+$('searchRegs').addEventListener('input',render);
+</script>
+</body></html>
