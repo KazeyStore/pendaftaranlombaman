@@ -270,7 +270,10 @@ $('regForm').addEventListener('submit',async e=>{
   const submit=$('regForm').querySelector('button[type="submit"]');submit.disabled=true;submit.textContent='MENGIRIM...';
   const {error}=await db.from('registrations').insert(d);
   submit.disabled=false;submit.textContent='KIRIM PENDAFTARAN';
-  if(error){alert('Pendaftaran belum berhasil dikirim. Periksa koneksi internet atau pengaturan database.');return;}
+if(error){
+  alert('ERROR: ' + error.message + ' | KODE: ' + error.code);
+  return;
+}
   $('sendMessage').textContent='Pendaftaran '+d.name+' berhasil dikirim. Terima kasih!';$('sendOverlay').classList.add('show');$('regForm').reset();updateForm();
 });
 $('exportBtn').addEventListener('click',()=>{
